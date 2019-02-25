@@ -1,0 +1,224 @@
+- name: Rename virtual machine from old name to new name using UUID
+  gather_facts: no
+  vars_files:
+    - variable/variable.yml
+    - variable/credentials.yml
+
+  hosts: localhost
+  tasks:
+    - set_fact:
+        vm_name: "{{ vmware_template }}"
+        datacenter: "{{ vmware_datacenter }}"
+        cluster_name: "{{ vmware_cluster }}"
+
+    - name: Get VM "{{ vmware_template }}" uuid
+      vmware_guest_facts:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: False
+        datacenter: "{{ vmware_datacenter }}"
+        folder: "{{ vmware_folder }}"
+        name: "{{ vmware_template }}"
+      register: vm_facts
+
+    - name: Rename "{{ vmware_template }}" to "{{ vm_name_template }}"
+      vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: False
+        state: present
+        is_template: True
+        cluster: "{{ vmware_cluster }}"
+        uuid: "{{ vm_facts.instance.hw_product_uuid }}"
+        name: "{{ vm_name_template }}"
+
+
+- name: Create a VM from a template
+  hosts: localhost
+  gather_facts: no
+  vars_files:
+    - variable/variable.yml
+    - variable/credentials.yml
+  tasks:
+  - name: Clone the template
+    vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: False
+      name: "{{ vmware_template }}"
+      template: "{{ vm_name_template }}"
+      datacenter: "{{ vmware_datacenter }}"
+      folder: "{{ vmware_folder }}"
+      state: poweredoff
+      is_template: yes
+      cluster: "{{ vmware_cluster }}"
+      wait_for_ip_address: no
+
+        
+- name: Conver Template to VM
+  gather_facts: no
+  vars_files:
+    - variable/credentials.yml
+    - variable/variable.yml
+  hosts: localhost
+  tasks:
+    - name: "Convert {{ vmware_template }} to {{ vm_name_template }}"
+      vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+        datacenter: "{{ vmware_datacenter }}"
+        state: present
+        cluster: "{{ vmware_cluster }}"
+        folder: "{{ vmware_folder }}"
+        name: "{{ vm_name_template }}"
+        template: "{{ vm_name_template }}"
+        is_template: False
+        resource_pool: "template_patching"
+
+
+
+
+- name: Poweron VM
+  gather_facts: no
+  vars_files:
+    - variable/credentials.yml
+    - variable/variable.yml
+#  vars:
+#    ansible_python_interpreter: "/usr/bin/env python3"
+  hosts: localhost
+  tasks:
+    - name: "Power ON vm"
+      vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+        datacenter: "{{ vmware_datacenter }}"
+        state: poweredon
+        folder: "{{ vmware_folder }}"
+        name: "{{ vm_name_template }}"
+        is_template: False
+        resource_pool: "template_patching"
+
+- name:  Windows Update
+  hosts: win
+  vars_files:
+    - variable/credentials.yml
+    - variable/variable.yml
+    - variable/inventory
+  gather_facts: false
+  tasks:
+    - name: Running Windows Update
+      win_updates:
+        category_names: ['SecurityUpdates','CriticalUpdates','UpdateRollups', 'Updates', 'DefinitionUpdates']
+#        reboot: yes
+      register: update_result
+
+    - win_reboot:
+      when: update_result.reboot_required
+
+
+    - name: Install any pending update
+      win_updates:
+        category_names: ['SecurityUpdates','CriticalUpdates','UpdateRollups', 'Updates', 'DefinitionUpdates']
+      register: update_result
+    - win_reboot:
+      when: update_result.reboot_required
+
+
+- name: Poweroff VM
+  gather_facts: no
+  vars_files:
+    - variable/credentials.yml
+    - variable/variable.yml
+  hosts: localhost
+  tasks:
+    - name: "Power Off VM"
+      vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+        datacenter: "{{ vmware_datacenter }}"
+        state: shutdownguest
+        folder: "{{ vmware_folder }}"
+        name: "{{ vm_name_template }}"
+        is_template: yes
+
+
+
+- name: Rename virtual machine from old name to new name using UUID
+  gather_facts: no
+  vars_files:
+    - variable/variable.yml
+    - variable/credentials.yml
+
+  hosts: localhost
+  tasks:
+    - set_fact:
+        vm_name: "{{ vmware_template }}"
+        datacenter: "{{ vmware_datacenter }}"
+        cluster_name: "{{ vmware_cluster }}"
+
+    - name: Get VM "{{ vmware_template }}" uuid
+      vmware_guest_facts:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: False
+        datacenter: "{{ vmware_datacenter }}"
+        folder: "{{ vmware_folder }}"
+        name: "{{ vmware_template }}"
+      register: vm_facts
+
+    - name: Rename "{{ vmware_template }}" to "{{ bkp_template }}"
+      vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: False
+        state: present
+        is_template: True
+        uuid: "{{ vm_facts.instance.hw_product_uuid }}"
+        name: "{{ bkp_template }}"
+
+- name: Rename virtual machine from old name to new name using UUID
+  gather_facts: no
+  vars_files:
+    - variable/variable.yml
+    - variable/credentials.yml
+  hosts: localhost
+
+  tasks:
+    - set_fact:
+        vm_name: "{{ vm_name_template }}"
+        datacenter: "{{ vmware_datacenter }}"
+        cluster_name: "{{ vmware_cluster }}"
+
+    - name: Get VM "{{ vmware_template }}" uuid
+      vmware_guest_facts:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: False
+        datacenter: "{{ vmware_datacenter }}"
+        folder: "{{ vmware_folder }}"
+        name: "{{ vm_name_template }}"
+      register: vm_facts
+
+    - name: Rename "{{ vm_name_template }}" to "{{ vmware_template }}"
+      vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: False
+        state: present
+        is_template: True
+        uuid: "{{ vm_facts.instance.hw_product_uuid }}"
+        name: "{{ vmware_template }}"
+

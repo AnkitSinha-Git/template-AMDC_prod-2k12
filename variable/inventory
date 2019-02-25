@@ -1,0 +1,9 @@
+#[win]
+#amdc-wintel03.ads.mckinsey.com
+#157.191.156.233
+
+#[win:vars]
+#ansible_user="ads\a-himanshu sharma-xf"
+#ansible_password=Ccy#0XXin19n
+#ansible_connection=winrm
+#ansible_winrm_server_cert_validation=ignore
