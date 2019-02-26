@@ -15,3 +15,4 @@
    vm_name_template: ansible-vm-new1
    resource_pool_name: "template_patching"
    bkp_template: "ansible-vm-new_bkp"
+   test_vm: "win2k16_patch_test"
