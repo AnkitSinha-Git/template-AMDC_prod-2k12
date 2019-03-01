@@ -16,7 +16,7 @@ pipelines:
           clean_workspace: true
           jobs:
             resources:
-             - linux
+                - linux
             Update-Template:          
               tasks:
                 - exec:
@@ -27,7 +27,7 @@ pipelines:
           clean_workspace: true
           jobs:
             resources:
-             - linux
+                - linux
             Deploy-test-VM:          
               tasks:
                 - exec:
@@ -38,7 +38,7 @@ pipelines:
           clean_workspace: true
           jobs:
             resources:
-             - linux
+                - linux
             rename_templates:          
               tasks:
                 - exec:
