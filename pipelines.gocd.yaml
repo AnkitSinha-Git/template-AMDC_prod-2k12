@@ -15,8 +15,6 @@ pipelines:
       - Update-Template:
           clean_workspace: true
           jobs:
-            resources:
-                - linux
             Update-Template:          
               tasks:
                 - exec:
