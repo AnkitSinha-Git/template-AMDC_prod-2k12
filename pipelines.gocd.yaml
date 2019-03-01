@@ -1,5 +1,5 @@
 pipelines:
-  Win2k16-Template-Patching:
+  NPN-Win2k16-Template-Patching:
 #    secure_variables:
 #      ENV_PASSWORD: "AES:Npay3ETiC8Pw4NqvQBkhvw==:zOEXbIw0iMhUDF4ROghavQ=="
     
@@ -11,6 +11,8 @@ pipelines:
         auto_update: true
         blacklist:
         - "README.md"
+      timer:
+        spec: "0 15 10 ? * Sat"
     stages:
       - Update-Template:
           clean_workspace: true
