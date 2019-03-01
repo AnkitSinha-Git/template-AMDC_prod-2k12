@@ -29,6 +29,8 @@ pipelines:
           clean_workspace: true
           jobs:
             Deploy-test-VM:          
+              resources:
+                - linux
               tasks:
                 - exec:
                     command: ansible-playbook
@@ -37,7 +39,9 @@ pipelines:
       - Final_Cleanup:
           clean_workspace: true
           jobs:
-            rename_templates:          
+            rename_templates:
+              resources:
+                - linux          
               tasks:
                 - exec:
                     command: ansible-playbook
