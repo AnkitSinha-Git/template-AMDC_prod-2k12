@@ -1,7 +1,7 @@
 pipelines:
   Win2k16-Template-Patching:
-    secure_variables:
-      ENV_PASSWORD: "AES:Npay3ETiC8Pw4NqvQBkhvw==:zOEXbIw0iMhUDF4ROghavQ=="
+#    secure_variables:
+#      ENV_PASSWORD: "AES:Npay3ETiC8Pw4NqvQBkhvw==:zOEXbIw0iMhUDF4ROghavQ=="
     
     group: Template-Patching
     materials:
