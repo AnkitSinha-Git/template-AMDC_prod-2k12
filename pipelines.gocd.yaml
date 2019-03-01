@@ -24,7 +24,7 @@ pipelines:
                 - exec:
                     command: ansible-playbook
                     arguments:
-                      - rename-templates.yaml
+                      - deploy-test-vm.yaml
       - Deploy-test-VM:
           clean_workspace: true
           jobs:
