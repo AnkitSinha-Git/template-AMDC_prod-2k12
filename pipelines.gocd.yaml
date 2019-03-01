@@ -26,8 +26,6 @@ pipelines:
       - Deploy-test-VM:
           clean_workspace: true
           jobs:
-            resources:
-                - linux
             Deploy-test-VM:          
               tasks:
                 - exec:
@@ -37,8 +35,6 @@ pipelines:
       - Final_Cleanup:
           clean_workspace: true
           jobs:
-            resources:
-                - linux
             rename_templates:          
               tasks:
                 - exec:
