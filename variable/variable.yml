@@ -12,7 +12,7 @@
 #   vmware_networks: 
    vmware_netconfig: no
    vm_name: anisble_template_test1
-   vm_name_template: ansible-vm-new1
+   vm_name_template: ansible-vm-new1 #New name for original tempalte for update process
    resource_pool_name: "template_patching"
    bkp_template: "ansible-vm-new_bkp"
    test_vm: "win2k16_patch_test"

@@ -1,3 +1,25 @@
+- name: Create a VM from a template
+  hosts: localhost
+  gather_facts: no
+  vars_files:
+    - variable/variable.yml
+    - variable/credentials.yml
+  tasks:
+  - name: Clone the template
+    vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: False
+      name: "{{ bkp_template }}"
+      template: "{{ vmware_template }}"
+      datacenter: "{{ vmware_datacenter }}"
+      folder: "{{ vmware_folder }}"
+      state: poweredoff
+      is_template: yes
+      cluster: "{{ vmware_cluster }}"
+      wait_for_ip_address: no
+
 - name: Rename virtual machine from old name to new name using UUID
   gather_facts: no
   vars_files:
@@ -34,28 +56,42 @@
         uuid: "{{ vm_facts.instance.hw_product_uuid }}"
         name: "{{ vm_name_template }}"
 
-
-- name: Create a VM from a template
-  hosts: localhost
+- name: Rename clone template name to original name using UUID
   gather_facts: no
   vars_files:
     - variable/variable.yml
     - variable/credentials.yml
+
+  hosts: localhost
   tasks:
-  - name: Clone the template
-    vmware_guest:
-      hostname: "{{ vcenter_hostname }}"
-      username: "{{ vcenter_username }}"
-      password: "{{ vcenter_password }}"
-      validate_certs: False
-      name: "{{ vmware_template }}"
-      template: "{{ vm_name_template }}"
-      datacenter: "{{ vmware_datacenter }}"
-      folder: "{{ vmware_folder }}"
-      state: poweredoff
-      is_template: yes
-      cluster: "{{ vmware_cluster }}"
-      wait_for_ip_address: no
+    - set_fact:
+        vm_name: "{{ bkp_template }}"
+        datacenter: "{{ vmware_datacenter }}"
+        cluster_name: "{{ vmware_cluster }}"
+
+    - name: Get VM "{{ bkp_template }}" uuid
+      vmware_guest_facts:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: False
+        datacenter: "{{ vmware_datacenter }}"
+        folder: "{{ vmware_folder }}"
+        name: "{{ bkp_template }}"
+      register: vm_facts
+
+    - name: Rename "{{ bkp_template }}" to "{{ vmware_template }}"
+      vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: False
+        state: present
+        is_template: True
+        uuid: "{{ vm_facts.instance.hw_product_uuid }}"
+        name: "{{ vmware_template }}"
+
+
 
         
 - name: Conver Template to VM
@@ -65,7 +101,7 @@
     - variable/variable.yml
   hosts: localhost
   tasks:
-    - name: "Convert {{ vmware_template }} to {{ vm_name_template }}"
+    - name: "Convert {{ vm_name_template }} to {{ vm_name_template }}"
       vmware_guest:
         hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_username }}"
@@ -151,5 +187,4 @@
         folder: "{{ vmware_folder }}"
         name: "{{ vm_name_template }}"
         is_template: yes
-
 
