@@ -16,6 +16,8 @@ pipelines:
           clean_workspace: true
           jobs:
             Update-Template:          
+              resources:
+                - linux
               tasks:
                 - exec:
                     command: ansible-playbook
