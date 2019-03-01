@@ -1,4 +1,11 @@
-  - name: Delete VM
+- name: Delete old backup template
+  hosts: localhost
+  gather_facts: no
+  vars_files:
+    - variable/variable.yml
+    - variable/credentials.yml
+  tasks:
+  - name: Delete old backup template
     vmware_guest:
       hostname: "{{ vcenter_hostname }}"
       username: "{{ vcenter_username }}"
