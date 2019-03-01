@@ -11,8 +11,8 @@ pipelines:
         auto_update: true
         blacklist:
         - "README.md"
-      timer:
-        spec: "0 15 10 ? * Sat"
+        timer:
+          spec: "0 15 10 ? * Sat"
     stages:
       - Update-Template:
           clean_workspace: true
