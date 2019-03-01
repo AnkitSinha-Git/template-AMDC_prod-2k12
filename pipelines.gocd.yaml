@@ -1,0 +1,46 @@
+pipelines:
+  td-tf-aws-module-s3:
+    secure_variables:
+      ENV_PASSWORD: "AES:Npay3ETiC8Pw4NqvQBkhvw==:zOEXbIw0iMhUDF4ROghavQ=="
+    
+    group: Template-Patching
+    materials:
+      infracode:
+        git: git@githuben.intranet.mckinsey.com:himanshu-sharma-xft/template-patching-npn.git
+        branch: master
+        auto_update: true
+        blacklist:
+        - "README.md"
+    stages:
+      - Update-Template:
+	      resource: linux
+          clean_workspace: true
+          jobs:
+            Update-Template:          
+              tasks:
+                - exec:
+                    command: ansible-playbook
+                    arguments:
+                      - rename-templates.yaml
+      - Deploy-test-VM:
+	      resource: linux
+          clean_workspace: true
+          jobs:
+            Deploy-test-VM:          
+              tasks:
+                - exec:
+                    command: ansible-playbook
+                    arguments:
+                      - deploy-test-vm.yaml
+      - Final_Cleanup:
+	      resource: linux
+          clean_workspace: true
+          jobs:
+            rename_templates:          
+              tasks:
+                - exec:
+                    command: ansible-playbook
+                    arguments:
+                      - rename-templates.yaml
+
+

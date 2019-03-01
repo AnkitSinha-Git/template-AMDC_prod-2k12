@@ -1,6 +1,6 @@
 - name: Create a VM from latest template
   hosts: localhost
-  gather_facts: no
+  gather_facts: yes
   vars_files:
     - variable/variable.yml
     - variable/credentials.yml
@@ -15,8 +15,38 @@
       template: "{{ vm_name_template }}"
       datacenter: "{{ vmware_datacenter }}"
       folder: "{{ vmware_folder }}"
-      state: poweredoff
+      state: poweredon
       is_template: No
       cluster: "{{ vmware_cluster }}"
-      wait_for_ip_address: no
+      wait_for_ip_address: yes
+    register: vm_facts
+
+  - name: get ip
+    debug:
+      msg: "{{ vm_facts.instance.ipv4 }} {{ test_vm }}"
+
+  - name: Check for ping
+    command: /usr/bin/ping -c 4 {{ vm_facts.instance.ipv4 }}
+    register: ping_response
+
+  - name: Check vm and power off
+    command: /usr/bin/echo  "Server not pingable"
+    when: ping_response.rc != 0
+
+    command: /usr/bin/ansible-playbook power-off.yaml
+    when: ping_response.rc == 0
+
+  - name: Delete VM
+    vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: False
+      name: "{{ test_vm }}"
+      template: "{{ vm_name_template }}"
+      datacenter: "{{ vmware_datacenter }}"
+      folder: "{{ vmware_folder }}"
+      state: absent
+      is_template: No
+      cluster: "{{ vmware_cluster }}"
 
