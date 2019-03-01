@@ -24,7 +24,7 @@ pipelines:
                 - exec:
                     command: ansible-playbook
                     arguments:
-                      - deploy-test-vm.yaml
+                      - final_code.yaml
       - Deploy-test-VM:
           clean_workspace: true
           jobs:
