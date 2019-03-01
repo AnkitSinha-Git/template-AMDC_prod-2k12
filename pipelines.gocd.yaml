@@ -13,9 +13,10 @@ pipelines:
         - "README.md"
     stages:
       - Update-Template:
-	      resource: linux
           clean_workspace: true
           jobs:
+            resources:
+             - linux
             Update-Template:          
               tasks:
                 - exec:
@@ -23,9 +24,10 @@ pipelines:
                     arguments:
                       - rename-templates.yaml
       - Deploy-test-VM:
-	      resource: linux
           clean_workspace: true
           jobs:
+            resources:
+             - linux
             Deploy-test-VM:          
               tasks:
                 - exec:
@@ -33,9 +35,10 @@ pipelines:
                     arguments:
                       - deploy-test-vm.yaml
       - Final_Cleanup:
-	      resource: linux
           clean_workspace: true
           jobs:
+            resources:
+             - linux
             rename_templates:          
               tasks:
                 - exec:
