@@ -1,0 +1,18 @@
+- name: Poweron VM
+  gather_facts: no
+  vars_files:
+    - variable/credentials.yml
+    - variable/variable.yml
+  hosts: localhost
+  tasks:
+    - name: "Power ON vm"
+      vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+        datacenter: "{{ vmware_datacenter }}"
+        state: poweredoff
+        folder: "{{ vmware_folder }}"
+        name: "{{ test_vm }}"
+        is_template: False
