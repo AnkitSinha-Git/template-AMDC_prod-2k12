@@ -1,5 +1,5 @@
 pipelines:
-  Win2k16-Template-Prod-Patching:
+  template-patching-npn-2k16:
     
     group: Template-Patching
     materials:
