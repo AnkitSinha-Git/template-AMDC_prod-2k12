@@ -1,12 +1,10 @@
 pipelines:
-  NPN-Win2k12-Template-Patching:
-#    secure_variables:
-#      ENV_PASSWORD: "AES:Npay3ETiC8Pw4NqvQBkhvw==:zOEXbIw0iMhUDF4ROghavQ=="
+  Win2k16-Template-Prod-Patching:
     
     group: Template-Patching
     materials:
       infracode:
-        git: git@githuben.intranet.mckinsey.com:himanshu-sharma-xft/template-patching-npn.git
+        git: git@githuben.intranet.mckinsey.com:himanshu-sharma-xft/template-patching-prod-2k16.git
         branch: master
         auto_update: true
         blacklist:
@@ -47,5 +45,4 @@ pipelines:
                     command: ansible-playbook
                     arguments:
                       - rename-templates.yaml
-
 
