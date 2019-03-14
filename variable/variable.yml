@@ -1,5 +1,5 @@
 ---
-   vcenter_hostname: "amdc-npn-vcenter01.ads.mckinsey.com"
+   vcenter_hostname: "amdc-vcenter01.ads.mckinsey.com"
    vmware_template: "vRA-Win2016-Template"
    vmware_cluster: "ConsolidatedServicesWN1"
    vmware_datacenter: "AM-Datacenter"

@@ -162,7 +162,7 @@
         resource_pool: "template_patching"
 
 - name:  Windows Update
-  hosts: npn-servers
+  hosts: win2k16
   vars_files:
     - variable/credentials.yml
     - variable/variable.yml
@@ -180,6 +180,9 @@
     - win_reboot:
       when: update_result.reboot_required
 
+    - name: List of updates
+      debug:
+        msg: "{{ update_result }}"
 
     - name: Install any pending update
       win_updates:
@@ -188,6 +191,9 @@
     - win_reboot:
       when: update_result.reboot_required
 
+    - name: List of updates
+      debug:
+        msg: "{{ update_result }}"
 
 - name: Poweroff VM
   gather_facts: no
