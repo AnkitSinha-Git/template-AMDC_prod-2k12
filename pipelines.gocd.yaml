@@ -1,5 +1,5 @@
 pipelines:
-   template-patching-npn-2k16:
+   template-patching-npn-2k12:
     group: Template-Patching
     materials:
       infracode:
