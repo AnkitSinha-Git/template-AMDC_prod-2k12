@@ -1,8 +1,5 @@
 pipelines:
-  NPN-Win2k12-Template-Patching:
-#    secure_variables:
-#      ENV_PASSWORD: "AES:Npay3ETiC8Pw4NqvQBkhvw==:zOEXbIw0iMhUDF4ROghavQ=="
-    
+   template-patching-npn-2k16:
     group: Template-Patching
     materials:
       infracode:
