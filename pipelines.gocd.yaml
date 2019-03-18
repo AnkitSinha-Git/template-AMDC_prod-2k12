@@ -1,16 +1,17 @@
 pipelines:
-  template-patching-npn-2k16:
-    
+  template-patching-prod-2k12:    
+
     group: Template-Patching
+    timer:
+      spec: "0 0 3 ? * TUE"
+      only_on_changes: no
     materials:
       infracode:
-        git: git@githuben.intranet.mckinsey.com:himanshu-sharma-xft/template-patching-prod-2k16.git
+        git: git@githuben.intranet.mckinsey.com:himanshu-sharma-xft/template-patching-prod-2k12.git
         branch: master
         auto_update: true
         blacklist:
         - "README.md"
-        timer:
-          spec: "0 15 10 ? * Sat"
     stages:
       - Update-Template:
           clean_workspace: true
