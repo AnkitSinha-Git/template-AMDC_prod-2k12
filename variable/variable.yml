@@ -1,6 +1,6 @@
 ---
    vcenter_hostname: "amdc-vcenter01.ads.mckinsey.com"
-   vmware_template: "vRA-Win2016-Template"
+   vmware_template: "vRA-w2k12r2_template-sccm"
    vmware_cluster: "ConsolidatedServicesWN1"
    vmware_datacenter: "AM-Datacenter"
    vmware_folder: "Templates"
@@ -8,7 +8,7 @@
    vmware_memory: 4096
    state: poweredoff
    vmware_netconfig: no
-   vm_name_template: vRA-Win2016-Template1 #New name for original tempalte for update process
+   vm_name_template: vRA-w2k12r2_template-sccm1 #New name for original tempalte for update process
    resource_pool_name: "template_patching"
-   bkp_template: "vRA-Win2016-Template_bkp"
-   test_vm: "w2k16r2-test-deploy" #Test VM deployed from updated template
+   bkp_template: "vRA-w2k12r2_template-sccm_bkp"
+   test_vm: "w2k12-test-deploy" #Test VM deployed from updated template

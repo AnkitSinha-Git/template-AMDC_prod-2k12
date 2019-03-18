@@ -162,7 +162,7 @@
         resource_pool: "template_patching"
 
 - name:  Windows Update
-  hosts: prod-win2k16
+  hosts: prod-win2k12
   vars_files:
     - variable/credentials.yml
     - variable/variable.yml
