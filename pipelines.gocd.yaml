@@ -1,10 +1,9 @@
 pipelines:
-  template-patching-prod-2k12:    
+   template-patching-prod-2k12:
     group: Template-Patching
     timer:
       spec: "0 0 3 ? * TUE"
       only_on_changes: no
-    group: Template-Patching
     materials:
       infracode:
         git: git@githuben.intranet.mckinsey.com:himanshu-sharma-xft/template-patching-prod-2k12.git
@@ -46,4 +45,5 @@ pipelines:
                     command: ansible-playbook
                     arguments:
                       - rename-templates.yaml
+
 
