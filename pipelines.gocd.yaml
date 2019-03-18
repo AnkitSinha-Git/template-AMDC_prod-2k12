@@ -9,7 +9,7 @@ pipelines:
         blacklist:
         - "README.md"
         timer:
-          spec: "0 10 9 ? * 2L"
+          spec: "0 5 11 ? * MON"
     stages:
       - Update-Template:
           clean_workspace: true
