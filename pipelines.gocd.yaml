@@ -1,6 +1,6 @@
 pipelines:
    template-patching-prod-2k12:
-    group: Template-Patching
+    group: Windows-Template-Patching
     timer:
       spec: "0 0 3 ? * TUE,SAT"
       only_on_changes: no
