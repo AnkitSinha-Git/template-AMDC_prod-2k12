@@ -22,7 +22,7 @@ pipelines:
                 - exec:
                     command: ansible-playbook
                     arguments:
-                      - final_code.yaml
+                      - final_code.yaml --vault-password-file=/cicd-code/vaultpasswd/vaultpasswd.txt
       - Deploy-test-VM:
           clean_workspace: true
           jobs:
@@ -33,7 +33,7 @@ pipelines:
                 - exec:
                     command: ansible-playbook
                     arguments:
-                      - deploy-test-vm.yaml
+                      - deploy-test-vm.yaml --vault-password-file=/cicd-code/vaultpasswd/vaultpasswd.txt
       - Final_Cleanup:
           clean_workspace: true
           jobs:
@@ -44,6 +44,6 @@ pipelines:
                 - exec:
                     command: ansible-playbook
                     arguments:
-                      - rename-templates.yaml
+                      - rename-templates.yaml --vault-password-file=/cicd-code/vaultpasswd/vaultpasswd.txt
 
 
