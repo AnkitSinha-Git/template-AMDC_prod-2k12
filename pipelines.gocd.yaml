@@ -20,9 +20,10 @@ pipelines:
                 - linux
               tasks:
                 - exec:
-                    command: /bin/bash
+                    command: ansible-playbook
                     arguments:
-                      - ansible-playbook final_code.yaml --vault-password-file=/cicd-code/linux/vaultpasswd/vaultpasswd.txt
+                      - final_code.yaml 
+		      - --vault-password-file=/cicd-code/linux/vaultpasswd/vaultpasswd.txt
       - Deploy-test-VM:
           clean_workspace: true
           jobs:
