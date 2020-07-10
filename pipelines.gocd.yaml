@@ -23,7 +23,7 @@ pipelines:
                     command: ansible-playbook
                     arguments:
                       - final_code.yaml 
-		      - --vault-password-file=/cicd-code/linux/vaultpasswd/vaultpasswd.txt
+		      - vault-password-file=/cicd-code/linux/vaultpasswd/vaultpasswd.txt
       - Deploy-test-VM:
           clean_workspace: true
           jobs:
