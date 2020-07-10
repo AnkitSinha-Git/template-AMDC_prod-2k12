@@ -1,8 +1,8 @@
 pipelines:
    template-patching-prod-2k12:
     secure_variables:
-      ENV_USR: "AES:afR1Jn+xAudF0/Nm2N2EG2N/baI/CDEvPQn+sBBr6SA="
-      ENV_PAS: "AES:vYQVUN7yu95pKam/1zqY5Q=="
+      ENV_USR: "3bhg4IGrgj5UHwrOniE6r8OQUT6c8ctQQkAbG4y487o="
+      ENV_PAS: "NJqRv82x8/vlDDM2L+HDdg=="
     group: Windows-Template-Patching
     timer:
       spec: "0 0 3 ? * TUE,SAT"

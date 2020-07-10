@@ -22,7 +22,7 @@
   gather_facts: no
   vars_files:
     - variable/variable.yml
-    - variable/credentials.yml
+#    - variable/credentials.yml
   tasks:
   - name: Clone the template
     vmware_guest:
@@ -43,7 +43,7 @@
   gather_facts: no
   vars_files:
     - variable/variable.yml
-    - variable/credentials.yml
+#    - variable/credentials.yml
 
   hosts: localhost
   tasks:
@@ -79,7 +79,7 @@
   gather_facts: no
   vars_files:
     - variable/variable.yml
-    - variable/credentials.yml
+#    - variable/credentials.yml
 
   hosts: localhost
   tasks:
@@ -117,7 +117,7 @@
   gather_facts: no
   vars_files:
     - variable/credentials.yml
-    - variable/variable.yml
+#    - variable/variable.yml
   hosts: localhost
   tasks:
     - name: "Convert {{ vm_name_template }} to {{ vm_name_template }}"
