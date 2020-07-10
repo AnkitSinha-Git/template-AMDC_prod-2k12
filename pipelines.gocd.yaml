@@ -1,5 +1,8 @@
 pipelines:
    template-patching-prod-2k12:
+    secure_variables:
+      ENV_USR: "AES:afR1Jn+xAudF0/Nm2N2EG2N/baI/CDEvPQn+sBBr6SA="
+      ENV_PAS: "AES:vYQVUN7yu95pKam/1zqY5Q=="
     group: Windows-Template-Patching
     timer:
       spec: "0 0 3 ? * TUE,SAT"
@@ -22,7 +25,7 @@ pipelines:
                 - exec:
                     command: ansible-playbook
                     arguments:
-                      - final_code.yaml
+                      - final_code.yaml --extra-vars 'vcenter_username=${ENV_USR} vcenter_password=${ENV_PAS}'
       - Deploy-test-VM:
           clean_workspace: true
           jobs:

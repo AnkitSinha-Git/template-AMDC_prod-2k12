@@ -3,7 +3,6 @@
   gather_facts: no
   vars_files:
     - variable/variable.yml
-    - variable/credentials.yml
   tasks:
   - name: Delete old backup template
     vmware_guest:
