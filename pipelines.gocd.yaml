@@ -23,7 +23,6 @@ pipelines:
                     command: ansible-playbook
                     arguments:
                       - final_code.yaml
-                      - --extra-vars 'vcenter_username="afR1Jn+xAudF0/Nm2N2EG2N/baI/CDEvPQn+sBBr6SA=" vcenter_password="vYQVUN7yu95pKam/1zqY5Q=="'
       - Deploy-test-VM:
           clean_workspace: true
           jobs:
