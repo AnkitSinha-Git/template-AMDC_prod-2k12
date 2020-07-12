@@ -3,13 +3,13 @@
   gather_facts: yes
   vars_files:
     - variable/variable.yml
-    - variable/credentials.yml
+#    - variable/credentials.yml
   tasks:
   - name: Clone the template
     vmware_guest:
       hostname: "{{ vcenter_hostname }}"
-      username: "{{ vcenter_username }}"
-      password: "{{ vcenter_password }}"
+      username: "{{ ESXI_USERNAME }}"
+      password: "{{ ESXI_PASSWORD }}"
       validate_certs: False
       name: "{{ test_vm }}"
       template: "{{ vm_name_template }}"
