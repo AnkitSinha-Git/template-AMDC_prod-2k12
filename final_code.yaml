@@ -3,9 +3,9 @@
   gather_facts: no
   vars_files:
     - variable/variable.yml
-#  vars:
-#    ESXI_USERNAMENAME: 'ESXI_USERNAME'
-#    ESXI_PASSWORDWORD: 'ESXI_PASSWORD'
+  vars:
+    ESXI_USERNAME: "{{ ESXI_USERNAME }}"
+    ESXI_PASSWORD: "{{ ESXI_PASSWORD }}"
   tasks:
   - name: Delete old backup template
     vmware_guest:
