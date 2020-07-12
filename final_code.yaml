@@ -4,14 +4,14 @@
   vars_files:
     - variable/variable.yml
   vars:
-    ESXI_USERNAME: "{{ esxi_username }}"
-    ESXI_PASSWORD: "{{ esxi_password }}"
+    username: {{ ESXI_USERNAME }}
+    password: {{ ESXI_PASSWORD }}
   tasks:
   - name: Delete old backup template
     vmware_guest:
       hostname: "{{ vcenter_hostname }}"
-      username: "{{ ESXI_USERNAME }}"
-      password: "{{ ESXI_PASSWORD }}"
+      username: ESXI_USERNAME
+      password: ESXI_PASSWORD
       validate_certs: False
       name: "{{ bkp_template }}"
       datacenter: "{{ vmware_datacenter }}"
