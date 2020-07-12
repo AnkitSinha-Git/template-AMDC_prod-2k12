@@ -4,8 +4,8 @@
   vars_files:
     - variable/variable.yml
   vars:
-      VMWARE_USER= "{{ ESXI_USERNAME }}"
-      VMWARE_PASSWORD= "{{ ESXI_PASSWORD }}"
+    VMWARE_USER= "{{ ESXI_USERNAME }}"
+    VMWARE_PASSWORD= "{{ ESXI_PASSWORD }}"
   tasks:
   - name: Delete old backup template
     vmware_guest:
