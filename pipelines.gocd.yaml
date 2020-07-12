@@ -26,7 +26,7 @@ pipelines:
                     command: ansible-playbook
                     arguments:
                       - final_code.yaml
-                      - --extra-var "ESXI_USERNAME=$ENV_USR ESXI_PASSWORD=$ENV_PAS"
+                      - --extra-vars "ESXI_USERNAME=$ENV_USR ESXI_PASSWORD=$ENV_PAS"
       - Deploy-test-VM:
           clean_workspace: true
           jobs:
@@ -38,7 +38,7 @@ pipelines:
                     command: ansible-playbook
                     arguments:
                       - deploy-test-vm.yaml
-                      - --extra-var "ESXI_USERNAME=$ENV_USR ESXI_PASSWORD=$ENV_PAS"
+                      - --extra-vars "ESXI_USERNAME=$ENV_USR ESXI_PASSWORD=$ENV_PAS"
       - Final_Cleanup:
           clean_workspace: true
           jobs:
@@ -50,6 +50,6 @@ pipelines:
                     command: ansible-playbook
                     arguments:
                       - rename-templates.yaml
-                      - --extra-var "ESXI_USERNAME=$ENV_USR ESXI_PASSWORD=$ENV_PAS"
+                      - --extra-vars "ESXI_USERNAME=$ENV_USR ESXI_PASSWORD=$ENV_PAS"
 
 
