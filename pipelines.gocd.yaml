@@ -5,7 +5,7 @@ pipelines:
       ENV_PAS: "vYQVUN7yu95pKam/1zqY5Q=="
     group: Windows-Template-Patching
     timer:
-      spec: "0 0 3 ? * TUE,SAT"
+      spec: "0 0 3 ? * SAT"
       only_on_changes: no
     materials:
       infracode:
