@@ -2,7 +2,7 @@ pipelines:
    template-patching-prod-2k12:
     secure_variables:
       ENV_USR: "VCReader@ads.mckinsey.com"
-      ENV_PAS: "vYQVUN7yu95pKam/1zqY5Q=="
+      ENV_PAS: "VCRe@der"
     group: Windows-Template-Patching
     timer:
       spec: "0 0 3 ? * SAT"
