@@ -26,7 +26,8 @@ pipelines:
                     command: ansible-playbook
                     arguments:
                       - final_code.yaml
-                      - --extra-vars "esxi_username=$ENV_USR esxi_password=$ENV_PAS" -vvvv
+                      - --extra-vars "esxi_username=$ENV_USR esxi_password=$ENV_PAS"
+                      - -vvvv
       - Deploy-test-VM:
           clean_workspace: true
           jobs:
