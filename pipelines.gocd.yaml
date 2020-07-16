@@ -25,15 +25,7 @@ pipelines:
                 - exec:
                     command: bash 
                     arguments:
-                      - -c
-                      - ansible-playbook
-                      - i
-                      - test
-                      - final_code.yaml
-                      - -e
-                      - VMWARE_USER="afR1Jn+xAudF0/Nm2N2EG2N/baI/CDEvPQn+sBBr6SA="
-                      - -e
-                      - VMWARE_PASSWORD="vYQVUN7yu95pKam/1zqY5Q=="
+                      - abc.sh
 #                      - -e
 #                      - VMWARE_USER="afR1Jn+xAudF0/Nm2N2EG2N/baI/CDEvPQn+sBBr6SA="
 #                      - VMWARE_PASSWORD="vYQVUN7yu95pKam/1zqY5Q=="'
