@@ -4,17 +4,17 @@
   vars_files:
     - variable/variable.yml
 #  vars:
-#    VMWARE_USER: "{{ ESXI_USERNAME }}"
+#    VMWARE_USER: "{{ VMWARE_USER }}"
 #    username: "{{ VMWARE_USER }}"
-#    password: "{{ ESXI_PASSWORD }}"
+#    password: "{{ VMWARE_PASSWORD }}"
   tasks:
   - name: Delete old backup template
     vmware_guest:
       hostname: "{{ vcenter_hostname }}"
-#      username: "{{ ESXI_USERNAME }}"
+#      username: "{{ VMWARE_USER }}"
       username: "{{ VMWARE_USER }}"
       password: "{{ VMWARE_PASSWORD }}"
-#      password: "{{ ESXI_PASSWORD }}"
+#      password: "{{ VMWARE_PASSWORD }}"
       validate_certs: False
       name: "{{ bkp_template }}"
       datacenter: "{{ vmware_datacenter }}"
@@ -33,8 +33,8 @@
   - name: Clone the template
     vmware_guest:
       hostname: "{{ vcenter_hostname }}"
-      username: "{{ ESXI_USERNAME }}"
-      password: "{{ ESXI_PASSWORD }}"
+      username: "{{ VMWARE_USER }}"
+      password: "{{ VMWARE_PASSWORD }}"
       validate_certs: False
       name: "{{ bkp_template }}"
       template: "{{ vmware_template }}"
@@ -61,8 +61,8 @@
     - name: Get VM "{{ vmware_template }}" uuid
       vmware_guest_facts:
         hostname: "{{ vcenter_hostname }}"
-#       username: "{{ ESXI_USERNAME }}"
-#        password: "{{ ESXI_PASSWORD }}"
+#       username: "{{ VMWARE_USER }}"
+#        password: "{{ VMWARE_PASSWORD }}"
         validate_certs: False
         datacenter: "{{ vmware_datacenter }}"
         folder: "{{ vmware_folder }}"
@@ -72,8 +72,8 @@
     - name: Rename "{{ vmware_template }}" to "{{ vm_name_template }}"
       vmware_guest:
         hostname: "{{ vcenter_hostname }}"
-#        username: "{{ ESXI_USERNAME }}"
-#        password: "{{ ESXI_PASSWORD }}"
+#        username: "{{ VMWARE_USER }}"
+#        password: "{{ VMWARE_PASSWORD }}"
         validate_certs: False
         state: present
         is_template: True
@@ -97,8 +97,8 @@
     - name: Get VM "{{ bkp_template }}" uuid
       vmware_guest_facts:
         hostname: "{{ vcenter_hostname }}"
-        username: "{{ ESXI_USERNAME }}"
-        password: "{{ ESXI_PASSWORD }}"
+        username: "{{ VMWARE_USER }}"
+        password: "{{ VMWARE_PASSWORD }}"
         validate_certs: False
         datacenter: "{{ vmware_datacenter }}"
         folder: "{{ vmware_folder }}"
@@ -108,8 +108,8 @@
     - name: Rename "{{ bkp_template }}" to "{{ vmware_template }}"
       vmware_guest:
         hostname: "{{ vcenter_hostname }}"
-        username: "{{ ESXI_USERNAME }}"
-        password: "{{ ESXI_PASSWORD }}"
+        username: "{{ VMWARE_USER }}"
+        password: "{{ VMWARE_PASSWORD }}"
         validate_certs: False
         state: present
         is_template: True
@@ -129,8 +129,8 @@
     - name: "Convert {{ vm_name_template }} to {{ vm_name_template }}"
       vmware_guest:
         hostname: "{{ vcenter_hostname }}"
-        username: "{{ ESXI_USERNAME }}"
-        password: "{{ ESXI_PASSWORD }}"
+        username: "{{ VMWARE_USER }}"
+        password: "{{ VMWARE_PASSWORD }}"
         validate_certs: no
         datacenter: "{{ vmware_datacenter }}"
         state: present
@@ -156,8 +156,8 @@
     - name: "Power ON vm"
       vmware_guest:
         hostname: "{{ vcenter_hostname }}"
-        username: "{{ ESXI_USERNAME }}"
-        password: "{{ ESXI_PASSWORD }}"
+        username: "{{ VMWARE_USER }}"
+        password: "{{ VMWARE_PASSWORD }}"
         validate_certs: no
         datacenter: "{{ vmware_datacenter }}"
         state: poweredon
@@ -209,8 +209,8 @@
     - name: "Power Off VM"
       vmware_guest:
         hostname: "{{ vcenter_hostname }}"
-        username: "{{ ESXI_USERNAME }}"
-        password: "{{ ESXI_PASSWORD }}"
+        username: "{{ VMWARE_USER }}"
+        password: "{{ VMWARE_PASSWORD }}"
         validate_certs: no
         datacenter: "{{ vmware_datacenter }}"
         state: shutdownguest
