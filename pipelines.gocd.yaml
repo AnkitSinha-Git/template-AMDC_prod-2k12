@@ -2,8 +2,8 @@ pipelines:
    template-patching-prod-2k12:
     secure_variables:
 #    environment_variables:
-      ENV_USR: {{SECRET:[Secret-vCenter][ENV_USR]}}
-      ENV_PASS: {{SECRET:[Secret-vCenter][ENV_PASS]}}
+      ENV_USR: "{{SECRET:[Secret-vCenter][ENV_USR]}}"
+      ENV_PASS: "{{SECRET:[Secret-vCenter][ENV_PASS]}}"
     group: Windows-Template-Patching
     timer:
       spec: "0 0 3 ? * SAT"
