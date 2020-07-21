@@ -24,7 +24,7 @@ pipelines:
                 - linux
               tasks:
                 - exec:
-                    command: ansible-playbook -e "VMWARE_USER=$ENV_USR VMWARE_PASSWORD=$ENV_PASS"
+                    command: ansible-playbook final_code.yaml -e "VMWARE_USER=$ENV_USR VMWARE_PASSWORD=$ENV_PASS"
                     arguments:
 #                      - -e
 #                      - VMWARE_USER="afR1Jn+xAudF0/Nm2N2EG2N/baI/CDEvPQn+sBBr6SA="
