@@ -1,7 +1,7 @@
 pipelines:
    template-patching-prod-2k12:
-    secure_variables:
-#    environment_variables:
+#    secure_variables:
+    environment_variables:
       ENV_USR: "{{SECRET:[Secret-vCenter][ENV_USR]}}"
       ENV_PASS: "{{SECRET:[Secret-vCenter][ENV_PASS]}}"
     group: Windows-Template-Patching
