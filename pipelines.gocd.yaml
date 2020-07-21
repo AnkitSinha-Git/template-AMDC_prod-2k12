@@ -24,11 +24,11 @@ pipelines:
                 - linux
               tasks:
                 - exec:
-                    command: ansible-playbook final_code.yaml -e "VMWARE_USER=$ENV_USR VMWARE_PASSWORD=$ENV_PASS"
+                    command: ansible-playbook
                     arguments:
-#                      - -e
-#                      - VMWARE_USER="afR1Jn+xAudF0/Nm2N2EG2N/baI/CDEvPQn+sBBr6SA="
-#                      - VMWARE_PASSWORD="vYQVUN7yu95pKam/1zqY5Q=="'
+                      - final_code.yaml
+                      - -e
+                      - "VMWARE_USER=$ENV_USR VMWARE_PASSWORD=$ENV_PASS"
 #                      - --extra-vars "VMWARE_USER=$ENV_USR VMWARE_PASSWORD=$ENV_PAS"
       - Deploy-test-VM:
           clean_workspace: true
