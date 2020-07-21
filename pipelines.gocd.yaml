@@ -2,8 +2,9 @@ pipelines:
    template-patching-prod-2k12:
 #    secure_variables:
     environment_variables:
-      ENV_USR: "{{SECRET:[Secret-vCenter][ENV_USR]}}"
-      ENV_PASS: "{{SECRET:[Secret-vCenter][ENV_PASS]}}"
+      ENV_USER: "{{SECRET:[Secret-vCenter][ENV_USR]}}"
+#      ENV_USR: "{{SECRET:[Secret-vCenter][ENV_USR]}}"
+      ENV_PASSWORD: "{{SECRET:[Secret-vCenter][ENV_PASS]}}"
     group: Windows-Template-Patching
     timer:
       spec: "0 0 3 ? * SAT"
@@ -28,7 +29,7 @@ pipelines:
                     arguments:
                       - final_code.yaml
                       - -e
-                      - "VMWARE_USER=$ENV_USR VMWARE_PASSWORD=$ENV_PASS"
+                      - "VMWARE_USER=$ENV_USER VMWARE_PASSWORD=$ENV_PASSWORD"
 #                      - --extra-vars "VMWARE_USER=$ENV_USR VMWARE_PASSWORD=$ENV_PAS"
       - Deploy-test-VM:
           clean_workspace: true
