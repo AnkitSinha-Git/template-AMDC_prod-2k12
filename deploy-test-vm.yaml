@@ -8,8 +8,10 @@
   - name: Clone the template
     vmware_guest:
       hostname: "{{ vcenter_hostname }}"
-      username: "{{ ESXI_USERNAME }}"
-      password: "{{ ESXI_PASSWORD }}"
+      username: "{{ VMWARE_USER }}"
+#      username: "{{ ESXI_USERNAME }}"
+      password: "{{ VMWARE_PASSWORD }}"
+#      password: "{{ ESXI_PASSWORD }}"
       validate_certs: False
       name: "{{ test_vm }}"
       template: "{{ vm_name_template }}"
