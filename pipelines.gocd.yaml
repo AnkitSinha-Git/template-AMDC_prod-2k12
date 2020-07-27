@@ -28,7 +28,7 @@ pipelines:
                     command: bash
                     arguments:
                       - -c
-                      - ansible-playbook final_code.yaml -e "VMWARE_USER=$ENV_USER VMWARE_PASSWORD=$ENV_PASSWORD"
+                      - ansible-playbook final_code.yaml -e VMWARE_USER=$ENV_USER -e VMWARE_PASSWORD=$ENV_PASSWORD
       - Deploy-test-VM:
           clean_workspace: true
           jobs:
