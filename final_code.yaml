@@ -11,10 +11,10 @@
   - name: Delete old backup template
     vmware_guest:
       hostname: "{{ vcenter_hostname }}"
-#      username: "{{ VMWARE_USER }}"
-      username: " VMWARE_USER "
-      password: " VMWARE_PASSWORD "
-#      password: "{{ VMWARE_PASSWORD }}"
+      username: "{{ VMWARE_USER }}"
+#      username: "VMWARE_USER "
+#      password: " VMWARE_PASSWORD "
+      password: "{{ VMWARE_PASSWORD }}"
       validate_certs: False
       name: "{{ bkp_template }}"
       datacenter: "{{ vmware_datacenter }}"
