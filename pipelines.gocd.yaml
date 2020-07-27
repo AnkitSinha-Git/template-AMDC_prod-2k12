@@ -25,12 +25,10 @@ pipelines:
                 - linux
               tasks:
                 - exec:
-                    command: ansible-playbook
+                    command: bash
                     arguments:
-                      - final_code.yaml
-                      - -e
-                      - "VMWARE_USER=$ENV_USER VMWARE_PASSWORD=$ENV_PASSWORD"
-#                      - --extra-vars "VMWARE_USER=$ENV_USR VMWARE_PASSWORD=$ENV_PAS"
+                      - -c
+                      - ansible-playbook final_code.yaml -e "VMWARE_USER=$ENV_USER VMWARE_PASSWORD=$ENV_PASSWORD"
       - Deploy-test-VM:
           clean_workspace: true
           jobs:
@@ -39,10 +37,10 @@ pipelines:
                 - linux
               tasks:
                 - exec:
-                    command: ansible-playbook
+                    command: bash
                     arguments:
-                      - deploy-test-vm.yaml
-                      - --extra-vars "ESXI_USERNAME=$ENV_USR ESXI_PASSWORD=$ENV_PAS"
+                      - -c
+                      - ansible-playbook deploy-test-vm.yaml --extra-vars "ESXI_USERNAME=$ENV_USER ESXI_PASSWORD=$ENV_PASSWORD"
       - Final_Cleanup:
           clean_workspace: true
           jobs:
