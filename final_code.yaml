@@ -122,8 +122,8 @@
 - name: Conver Template to VM
   gather_facts: no
   vars_files:
-    - variable/credentials.yml
-#    - variable/variable.yml
+#    - variable/credentials.yml
+    - variable/variable.yml
   hosts: localhost
   tasks:
     - name: "Convert {{ vm_name_template }} to {{ vm_name_template }}"
@@ -147,7 +147,7 @@
 - name: Poweron VM
   gather_facts: no
   vars_files:
-    - variable/credentials.yml
+#    - variable/credentials.yml
     - variable/variable.yml
 #  vars:
 #    ansible_python_interpreter: "/usr/bin/env python3"
@@ -169,7 +169,7 @@
 - name:  Windows Update
   hosts: prod-win2k12
   vars_files:
-    - variable/credentials.yml
+#    - variable/credentials.yml
     - variable/variable.yml
     - variable/inventory
   gather_facts: false
@@ -202,7 +202,7 @@
 - name: Poweroff VM
   gather_facts: no
   vars_files:
-    - variable/credentials.yml
+#    - variable/credentials.yml
     - variable/variable.yml
   hosts: localhost
   tasks:
