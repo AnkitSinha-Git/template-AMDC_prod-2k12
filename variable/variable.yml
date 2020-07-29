@@ -9,6 +9,6 @@
    state: poweredoff
    vmware_netconfig: no
    vm_name_template: vRA-w2k12r2_template-sccm1 #New name for original tempalte for update process
-   resource_pool_name: Resources""
+   resource_pool_name: "Resources"
    bkp_template: "vRA-w2k12r2_template-sccm_bkp"
    test_vm: "w2k12-test-deploy" #Test VM deployed from updated template

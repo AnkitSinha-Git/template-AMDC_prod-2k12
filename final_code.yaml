@@ -3,17 +3,11 @@
   gather_facts: no
   vars_files:
     - variable/variable.yml
-#  vars:
-#    VMWARE_USER: "{{ VMWARE_USER }}"
-#    username: "{{ VMWARE_USER }}"
-#    password: "{{ VMWARE_PASSWORD }}"
   tasks:
   - name: Delete old backup template
     vmware_guest:
       hostname: "{{ vcenter_hostname }}"
       username: "{{ VMWARE_USER }}"
-#      username: "VMWARE_USER "
-#      password: " VMWARE_PASSWORD "
       password: "{{ VMWARE_PASSWORD }}"
       validate_certs: False
       name: "{{ bkp_template }}"
@@ -28,7 +22,6 @@
   gather_facts: no
   vars_files:
     - variable/variable.yml
-#    - variable/credentials.yml
   tasks:
   - name: Clone the template
     vmware_guest:
@@ -49,7 +42,6 @@
   gather_facts: no
   vars_files:
     - variable/variable.yml
-#    - variable/credentials.yml
 
   hosts: localhost
   tasks:
@@ -85,7 +77,6 @@
   gather_facts: no
   vars_files:
     - variable/variable.yml
-#    - variable/credentials.yml
 
   hosts: localhost
   tasks:
@@ -122,7 +113,6 @@
 - name: Conver Template to VM
   gather_facts: no
   vars_files:
-#    - variable/credentials.yml
     - variable/variable.yml
   hosts: localhost
   tasks:
@@ -147,10 +137,7 @@
 - name: Poweron VM
   gather_facts: no
   vars_files:
-#    - variable/credentials.yml
     - variable/variable.yml
-#  vars:
-#    ansible_python_interpreter: "/usr/bin/env python3"
   hosts: localhost
   tasks:
     - name: "Power ON vm"
@@ -169,7 +156,6 @@
 - name:  Windows Update
   hosts: prod-win2k12
   vars_files:
-#    - variable/credentials.yml
     - variable/variable.yml
     - variable/inventory
   gather_facts: false
@@ -202,7 +188,6 @@
 - name: Poweroff VM
   gather_facts: no
   vars_files:
-#    - variable/credentials.yml
     - variable/variable.yml
   hosts: localhost
   tasks:
