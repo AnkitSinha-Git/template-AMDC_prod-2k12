@@ -32,7 +32,7 @@
     command: /usr/bin/echo  "Server not pingable"
     when: ping_response.rc != 0
 
-    command: /usr/bin/ansible-playbook power-off.yaml
+    command: /usr/bin/ansible-playbook power-off.yaml -e VMWARE_USER=$ENV_USER -e VMWARE_PASSWORD=$ENV_PASSWORD
     when: ping_response.rc == 0
 
   - name: Delete VM
