@@ -14,8 +14,8 @@
     - name: Get VM "{{ vmware_template }}" uuid
       vmware_guest_facts:
         hostname: "{{ vcenter_hostname }}"
-        username: "{{ ESXI_USERNAME }}"
-        password: "{{ ESXI_PASSWORD }}"
+        username: "{{ VMWARE_USER }}"
+        password: "{{ VMWARE_PASSWORD }}"
         validate_certs: False
         datacenter: "{{ vmware_datacenter }}"
         folder: "{{ vmware_folder }}"
@@ -25,9 +25,8 @@
     - name: Rename "{{ vmware_template }}" to "{{ bkp_template }}"
       vmware_guest:
         hostname: "{{ vcenter_hostname }}"
-        username: "{{ ESXI_USERNAME }}"
-        password: "{{ ESXI_PASSWORD }}"
-        validate_certs: False
+        username: "{{ VMWARE_USER }}"
+        password: "{{ VMWARE_PASSWORD }}"
         state: present
         is_template: True
         uuid: "{{ vm_facts.instance.hw_product_uuid }}"
@@ -49,10 +48,9 @@
     - name: Get VM "{{ vmware_template }}" uuid
       vmware_guest_facts:
         hostname: "{{ vcenter_hostname }}"
-        username: "{{ ESXI_USERNAME }}"
-        password: "{{ ESXI_PASSWORD }}"
-        validate_certs: False
         datacenter: "{{ vmware_datacenter }}"
+        username: "{{ VMWARE_USER }}"
+        password: "{{ VMWARE_PASSWORD }}"
         folder: "{{ vmware_folder }}"
         name: "{{ vm_name_template }}"
       register: vm_facts
@@ -60,8 +58,8 @@
     - name: Rename "{{ vm_name_template }}" to "{{ vmware_template }}"
       vmware_guest:
         hostname: "{{ vcenter_hostname }}"
-        username: "{{ ESXI_USERNAME }}"
-        password: "{{ ESXI_PASSWORD }}"
+        username: "{{ VMWARE_USER }}"
+        password: "{{ VMWARE_PASSWORD }}"
         validate_certs: False
         state: present
         is_template: True
