@@ -1,9 +1,7 @@
 pipelines:
    template-patching-prod-2k12:
-#    secure_variables:
     environment_variables:
-      ENV_USER: "VCReader@ads.mckinsey.com"
-#      ENV_USR: "{{SECRET:[Secret-vCenter][ENV_USR]}}"
+      ENV_USR: "{{SECRET:[Secret-vCenter][ENV_USR]}}"
       ENV_PASSWORD: "{{SECRET:[Secret-vCenter][ENV_PASS]}}"
     group: Windows-Template-Patching
     timer:
