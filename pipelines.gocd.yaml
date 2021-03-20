@@ -9,7 +9,7 @@ pipelines:
       only_on_changes: no
     materials:
       infracode:
-        git: git@githuben.intranet.mckinsey.com:himanshu-sharma-xft/template-patching-prod-2k12.git
+        git: https://github.com/AnkitSinha-Git/template-AMDC_prod-2k12.git
         branch: master
         auto_update: true
         blacklist:
